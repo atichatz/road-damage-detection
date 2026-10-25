@@ -1,0 +1,18 @@
+# Local environments and generated caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+# Dataset is downloaded separately
+/data/
+# Large/resumable checkpoints are external; best YOLO and SSD weights are included
+checkpoint_latest.pth
+last.pt
+outputs/runs/trainer_FasterRCNN_*/model_best.pth
+# Transient demo outputs
+*.tmp

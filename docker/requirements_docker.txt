@@ -1,0 +1,23 @@
+# Python dependencies for Docker image
+# Road Damage Detection Demo | ITCS352 | ICT Mahidol 2026
+# Students: 6688012, 6688193
+#
+# NOTE: This file mirrors what Dockerfile installs.
+# PyTorch CPU-only to keep image size small (~1.5 GB vs ~5 GB CUDA build).
+# For GPU support, replace torch/torchvision lines with plain `torch` and `torchvision`
+# and run the container with: docker run --gpus all -p 7860:7860 road-damage-demo
+
+# PyTorch CPU-only
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.2.2+cpu
+torchvision==0.17.2+cpu
+
+# YOLOv8
+ultralytics>=8.2,<9
+
+# Demo UI (must match Dockerfile: gradio>=5.0)
+gradio>=5.0
+
+opencv-python-headless>=4.8
+
+numpy>=1.24,<2

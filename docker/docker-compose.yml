@@ -1,0 +1,40 @@
+# docker-compose.yml — Road Damage Detection Demo
+# ITCS352 Deep Learning Project | ICT Mahidol 2026 | DewPerawis
+#
+# Usage:
+#   Build + start:  docker compose up --build
+#   Start only  :  docker compose up
+#   Stop        :  docker compose down
+#   Logs        :  docker compose logs -f
+
+services:
+  road-damage-demo:
+    build:
+      context: .          # build context = project root (where Dockerfile lives)
+      dockerfile: Dockerfile
+    image: road-damage-demo:latest
+    container_name: road_damage_demo
+    ports:
+      - "7860:7860"       # host:container — open http://localhost:7860
+    environment:
+      # Force CPU inference inside container (change to '0' if running with --gpus all)
+      - CUDA_VISIBLE_DEVICES=-1
+    restart: unless-stopped
+
+  # ── GPU variant (uncomment + comment out the above service to use GPU) ───────
+  # road-damage-demo-gpu:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   image: road-damage-demo:latest
+  #   container_name: road_damage_demo_gpu
+  #   ports:
+  #     - "7860:7860"
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
+  #   restart: unless-stopped
